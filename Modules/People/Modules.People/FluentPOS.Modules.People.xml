@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FluentPOS.Modules.People</name>
+    </assembly>
+    <members>
+        <member name="M:FluentPOS.Modules.People.Controllers.CartItemsController.GetCartItemsAsync(FluentPOS.Shared.DTOs.People.CartItems.PaginatedCartItemFilter)">
+            <summary>
+            Gets all Cart Items for a particular CartId.
+            </summary>
+        </member>
+    </members>
+</doc>

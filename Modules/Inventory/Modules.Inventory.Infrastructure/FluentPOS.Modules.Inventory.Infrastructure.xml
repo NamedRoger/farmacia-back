@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FluentPOS.Modules.Inventory.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:FluentPOS.Modules.Inventory.Infrastructure.Extensions.ServiceCollectionExtensions">
+            <summary>
+            Service Collection Extension.
+            </summary>
+        </member>
+        <member name="M:FluentPOS.Modules.Inventory.Infrastructure.Extensions.ServiceCollectionExtensions.AddInventoryInfrastructure(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Persistence Registration for Inventory Module.
+            </summary>
+            <param name="services"><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.</param>
+            <returns>Returns <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.</returns>
+        </member>
+        <member name="T:FluentPOS.Modules.Inventory.Infrastructure.Services.StockService">
+            <inheritdoc/>
+        </member>
+        <member name="M:FluentPOS.Modules.Inventory.Infrastructure.Services.StockService.#ctor(FluentPOS.Modules.Inventory.Core.Abstractions.IInventoryDbContext)">
+            <summary>
+            Stock Service.
+            </summary>
+            <param name="context">Context.</param>
+        </member>
+        <member name="M:FluentPOS.Modules.Inventory.Infrastructure.Services.StockService.RecordTransaction(System.Guid,System.Decimal,System.String,System.Boolean)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

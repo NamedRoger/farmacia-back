@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FluentPOS.Modules.Inventory</name>
+    </assembly>
+    <members>
+        <member name="T:FluentPOS.Modules.Inventory.Extensions.ModuleExtensions">
+            <summary>
+            Module Extensions.
+            </summary>
+        </member>
+        <member name="M:FluentPOS.Modules.Inventory.Extensions.ModuleExtensions.AddInventoryModule(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Service Registration for Inventory Module.
+            </summary>
+            <param name="services"><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.</param>
+            <param name="configuration"><see cref="T:Microsoft.Extensions.Configuration.IConfiguration"/>.</param>
+            <returns>Returns <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.</returns>
+        </member>
+        <member name="M:FluentPOS.Modules.Inventory.Extensions.ModuleExtensions.UseInventoryModule(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Application Usage for Inventory Module.
+            </summary>
+            <param name="app"><see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>.</param>
+            <returns>Returns <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>.</returns>
+        </member>
+    </members>
+</doc>

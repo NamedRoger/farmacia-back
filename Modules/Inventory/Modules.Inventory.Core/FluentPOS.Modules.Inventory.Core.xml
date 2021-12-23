@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FluentPOS.Modules.Inventory.Core</name>
+    </assembly>
+    <members>
+        <member name="T:FluentPOS.Modules.Inventory.Core.Extensions.ServiceCollectionExtensions">
+            <summary>
+            Extensions for IServiceCollection.
+            </summary>
+        </member>
+        <member name="M:FluentPOS.Modules.Inventory.Core.Extensions.ServiceCollectionExtensions.AddInventoryCore(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Service Registrations for Core Inventory Project.
+            </summary>
+            <param name="services"><see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.</param>
+            <returns>Returns <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.</returns>
+        </member>
+    </members>
+</doc>

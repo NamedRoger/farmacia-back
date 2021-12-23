@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FluentPOS.Shared.Core</name>
+    </assembly>
+    <members>
+        <member name="T:FluentPOS.Shared.Core.IntegrationServices.Inventory.IStockService">
+            <summary>
+            Integration Services for Inventory Module.
+            </summary>
+        </member>
+        <member name="M:FluentPOS.Shared.Core.IntegrationServices.Inventory.IStockService.RecordTransaction(System.Guid,System.Decimal,System.String,System.Boolean)">
+            <summary>
+            Record Transaction.
+            </summary>
+            <param name="productId">Product Id.</param>
+            <param name="quantity">Quantity.</param>
+            <param name="referenceNumber">Reference Number.</param>
+            <param name="isSale">Is Sale.</param>
+            <returns>Task Completed.</returns>
+        </member>
+        <member name="P:FluentPOS.Shared.Core.Interfaces.Serialization.IJsonSerializerOptions.JsonSerializerOptions">
+            <summary>
+            Options for <see cref="N:System.Text.Json"/>.
+            </summary>
+        </member>
+        <member name="P:FluentPOS.Shared.Core.Interfaces.Serialization.IJsonSerializerSettings.JsonSerializerSettings">
+            <summary>
+            Settings for <see cref="N:Newtonsoft.Json"/>.
+            </summary>
+        </member>
+        <member name="M:FluentPOS.Shared.Core.Mappings.Converters.OrderByConverter.Convert(System.String,AutoMapper.ResolutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:FluentPOS.Shared.Core.Mappings.Converters.OrderByConverter.Convert(System.String[],AutoMapper.ResolutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:FluentPOS.Shared.Core.Serialization.TimespanJsonConverter">
+            <summary>
+            The new Json.NET doesn't support Timespan at this time.
+            https://github.com/dotnet/corefx/issues/38641.
+            </summary>
+        </member>
+        <member name="F:FluentPOS.Shared.Core.Serialization.TimespanJsonConverter.TimeSpanFormatString">
+            <summary>
+            Format: Days.Hours:Minutes:Seconds:Milliseconds.
+            </summary>
+        </member>
+    </members>
+</doc>
