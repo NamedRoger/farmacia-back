@@ -59,6 +59,7 @@ namespace FluentPOS.Modules.Catalog.Infrastructure.Extensions
             {
                 entity.ToTable("ProductExtendedAttributes");
             });
+
         }
     }
 }

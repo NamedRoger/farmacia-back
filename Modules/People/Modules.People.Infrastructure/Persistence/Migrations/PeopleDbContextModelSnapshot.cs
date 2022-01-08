@@ -246,6 +246,85 @@ namespace FluentPOS.Modules.People.Infrastructure.Persistence.Migrations
                     b.ToTable("CustomerExtendedAttributes");
                 });
 
+            modelBuilder.Entity("FluentPOS.Modules.People.Core.Entities.ExtendedAttributes.SupplierExtendenAttribute", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool?>("Boolean")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("Decimal")
+                        .HasColumnType("decimal(23,2)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ExternalId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Group")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Integer")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Json")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Type")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntityId");
+
+                    b.ToTable("SupplierExtendenAttributes");
+                });
+
+            modelBuilder.Entity("FluentPOS.Modules.People.Core.Entities.Supplier", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Company")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RFC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Suppliers");
+                });
+
             modelBuilder.Entity("FluentPOS.Modules.People.Core.Entities.Cart", b =>
                 {
                     b.HasOne("FluentPOS.Modules.People.Core.Entities.Customer", "Customer")
@@ -301,6 +380,17 @@ namespace FluentPOS.Modules.People.Infrastructure.Persistence.Migrations
                     b.Navigation("Entity");
                 });
 
+            modelBuilder.Entity("FluentPOS.Modules.People.Core.Entities.ExtendedAttributes.SupplierExtendenAttribute", b =>
+                {
+                    b.HasOne("FluentPOS.Modules.People.Core.Entities.Supplier", "Entity")
+                        .WithMany("ExtendedAttributes")
+                        .HasForeignKey("EntityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Entity");
+                });
+
             modelBuilder.Entity("FluentPOS.Modules.People.Core.Entities.Cart", b =>
                 {
                     b.Navigation("CartItems");
@@ -314,6 +404,11 @@ namespace FluentPOS.Modules.People.Infrastructure.Persistence.Migrations
                 });
 
             modelBuilder.Entity("FluentPOS.Modules.People.Core.Entities.Customer", b =>
+                {
+                    b.Navigation("ExtendedAttributes");
+                });
+
+            modelBuilder.Entity("FluentPOS.Modules.People.Core.Entities.Supplier", b =>
                 {
                     b.Navigation("ExtendedAttributes");
                 });

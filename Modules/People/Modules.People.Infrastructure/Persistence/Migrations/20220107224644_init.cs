@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FluentPOS.Modules.People.Infrastructure.Persistence.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,6 +25,23 @@ namespace FluentPOS.Modules.People.Infrastructure.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Suppliers",
+                schema: "People",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Company = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RFC = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Suppliers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -76,6 +93,38 @@ namespace FluentPOS.Modules.People.Infrastructure.Persistence.Migrations
                         column: x => x.EntityId,
                         principalSchema: "People",
                         principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SupplierExtendenAttributes",
+                schema: "People",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Type = table.Column<byte>(type: "tinyint", nullable: false),
+                    Key = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Decimal = table.Column<decimal>(type: "decimal(23,2)", nullable: true),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Json = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Boolean = table.Column<bool>(type: "bit", nullable: true),
+                    Integer = table.Column<int>(type: "int", nullable: true),
+                    ExternalId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Group = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SupplierExtendenAttributes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SupplierExtendenAttributes_Suppliers_EntityId",
+                        column: x => x.EntityId,
+                        principalSchema: "People",
+                        principalTable: "Suppliers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -195,6 +244,12 @@ namespace FluentPOS.Modules.People.Infrastructure.Persistence.Migrations
                 schema: "People",
                 table: "CustomerExtendedAttributes",
                 column: "EntityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SupplierExtendenAttributes_EntityId",
+                schema: "People",
+                table: "SupplierExtendenAttributes",
+                column: "EntityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -212,7 +267,15 @@ namespace FluentPOS.Modules.People.Infrastructure.Persistence.Migrations
                 schema: "People");
 
             migrationBuilder.DropTable(
+                name: "SupplierExtendenAttributes",
+                schema: "People");
+
+            migrationBuilder.DropTable(
                 name: "CartItems",
+                schema: "People");
+
+            migrationBuilder.DropTable(
+                name: "Suppliers",
                 schema: "People");
 
             migrationBuilder.DropTable(

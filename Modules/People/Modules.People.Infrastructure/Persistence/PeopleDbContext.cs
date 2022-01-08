@@ -25,7 +25,8 @@ namespace FluentPOS.Modules.People.Infrastructure.Persistence
     public sealed class PeopleDbContext : ModuleDbContext, IPeopleDbContext,
         IExtendedAttributeDbContext<Guid, Customer, CustomerExtendedAttribute>,
         IExtendedAttributeDbContext<Guid, Cart, CartExtendedAttribute>,
-        IExtendedAttributeDbContext<Guid, CartItem, CartItemExtendedAttribute>
+        IExtendedAttributeDbContext<Guid, CartItem, CartItemExtendedAttribute>,
+        IExtendedAttributeDbContext<Guid, Supplier, SupplierExtendenAttribute>
     {
         private readonly PersistenceSettings _persistenceOptions;
         private readonly IJsonSerializer _json;
@@ -50,6 +51,8 @@ namespace FluentPOS.Modules.People.Infrastructure.Persistence
 
         public DbSet<CartItem> CartItems { get; set; }
 
+        public DbSet<Supplier> Suppliers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -67,5 +70,9 @@ namespace FluentPOS.Modules.People.Infrastructure.Persistence
         DbSet<CartItem> IExtendedAttributeDbContext<Guid, CartItem, CartItemExtendedAttribute>.GetEntities() => CartItems;
 
         DbSet<CartItemExtendedAttribute> IExtendedAttributeDbContext<Guid, CartItem, CartItemExtendedAttribute>.ExtendedAttributes { get; set; }
+
+        DbSet<Supplier> IExtendedAttributeDbContext<Guid, Supplier, SupplierExtendenAttribute>.GetEntities() => Suppliers;
+
+        DbSet<SupplierExtendenAttribute> IExtendedAttributeDbContext<Guid, Supplier, SupplierExtendenAttribute>.ExtendedAttributes { get; set; }
     }
 }

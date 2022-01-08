@@ -43,6 +43,11 @@ namespace FluentPOS.Modules.People.Infrastructure.Extensions
             {
                 entity.ToTable("CartItemExtendedAttributes");
             });
+
+            builder.Entity<SupplierExtendenAttribute>(entity =>
+            {
+                entity.ToTable("SupplierExtendenAttributes");
+            });
         }
     }
 }
