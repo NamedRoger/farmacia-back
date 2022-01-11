@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------
+﻿    // --------------------------------------------------------------------------------------------------
 // <copyright file="SaleCommandHandler.cs" company="FluentPOS">
 // Copyright (c) FluentPOS. All rights reserved.
 // The core team: Mukesh Murugan (iammukeshm), Chhin Sras (chhinsras), Nikolay Chebotov (unchase).
@@ -76,6 +76,7 @@ namespace FluentPOS.Modules.Sales.Core.Features.Sales.Commands
             await _salesContext.Orders.AddAsync(order, cancellationToken);
             await _salesContext.SaveChangesAsync(cancellationToken);
             await _cartService.RemoveCartAsync(command.CartId);
+
             foreach (var product in order.Products)
             {
                 await _stockService.RecordTransaction(product.ProductId, product.Quantity, order.ReferenceNumber);

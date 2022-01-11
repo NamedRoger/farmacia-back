@@ -273,6 +273,31 @@ namespace FluentPOS.Modules.Catalog.Infrastructure.Persistence.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("FluentPOS.Modules.Catalog.Core.Entities.Supplier", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("ActivePrice")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(23,2)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SupplierId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Suppliers");
+                });
+
             modelBuilder.Entity("FluentPOS.Modules.Catalog.Core.Entities.ExtendedAttributes.BrandExtendedAttribute", b =>
                 {
                     b.HasOne("FluentPOS.Modules.Catalog.Core.Entities.Brand", "Entity")
@@ -325,6 +350,15 @@ namespace FluentPOS.Modules.Catalog.Infrastructure.Persistence.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("FluentPOS.Modules.Catalog.Core.Entities.Supplier", b =>
+                {
+                    b.HasOne("FluentPOS.Modules.Catalog.Core.Entities.Product", null)
+                        .WithMany("Suppliers")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("FluentPOS.Modules.Catalog.Core.Entities.Brand", b =>
                 {
                     b.Navigation("ExtendedAttributes");
@@ -338,6 +372,8 @@ namespace FluentPOS.Modules.Catalog.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("FluentPOS.Modules.Catalog.Core.Entities.Product", b =>
                 {
                     b.Navigation("ExtendedAttributes");
+
+                    b.Navigation("Suppliers");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,6 +2,7 @@
   "dependencies": {
     "mssql1": {
       "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/farmaciasql/databases/fluentpos",
       "type": "mssql.azure",
       "connectionId": "PersistenceSettings:connectionStrings:mssql"
     }

@@ -45,12 +45,19 @@ namespace FluentPOS.Modules.Catalog.Core.Entities
 
         public string Detail { get; set; }
 
+        public virtual ICollection<Supplier> Suppliers { get; set; }
+
         public virtual ICollection<ProductExtendedAttribute> ExtendedAttributes { get; set; }
 
         public Product()
             : base()
         {
             ExtendedAttributes = new HashSet<ProductExtendedAttribute>();
+        }
+
+        public void AddSupplier(Supplier supplier)
+        {
+            Suppliers.Add(supplier);
         }
     }
 }

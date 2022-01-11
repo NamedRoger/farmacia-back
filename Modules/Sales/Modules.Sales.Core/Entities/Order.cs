@@ -75,5 +75,19 @@ namespace FluentPOS.Modules.Sales.Core.Entities
                 Total = (quantity * rate) + (tax * quantity)
             });
         }
+
+        public void CalculateSubTotal()
+        {
+            foreach (var product in Products)
+            {
+                SubTotal += product.Total;
+            }
+        }
+
+        public void CalculateTotal()
+        {
+            CalculateSubTotal();
+            Total = SubTotal - Discount;
+        }
     }
 }

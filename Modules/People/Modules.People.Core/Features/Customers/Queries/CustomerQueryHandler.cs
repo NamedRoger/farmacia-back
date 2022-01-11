@@ -50,7 +50,16 @@ namespace FluentPOS.Modules.People.Core.Features.Customers.Queries
         public async Task<PaginatedResult<GetCustomersResponse>> Handle(GetCustomersQuery request, CancellationToken cancellationToken)
 #pragma warning restore RCS1046 // Asynchronous method name should end with 'Async'.
         {
-            Expression<Func<Customer, GetCustomersResponse>> expression = e => new GetCustomersResponse(e.Id, e.Name, e.Phone, e.Email, e.ImageUrl, e.Type);
+            Expression<Func<Customer, GetCustomersResponse>> expression = e => new GetCustomersResponse(
+                e.Id,
+                e.Name,
+                e.Phone,
+                e.Email,
+                e.ImageUrl,
+                e.Type,
+                e.Address,
+                e.RFC,
+                e.BussinesName);
 
             var queryable = _context.Customers.AsNoTracking().OrderBy(x => x.Id).AsQueryable();
 
@@ -59,7 +68,12 @@ namespace FluentPOS.Modules.People.Core.Features.Customers.Queries
 
             if (!string.IsNullOrEmpty(request.SearchString))
             {
-                queryable = queryable.Where(c => c.Name.Contains(request.SearchString) || c.Phone.Contains(request.SearchString) || c.Email.Contains(request.SearchString));
+                queryable = queryable.Where(c => c.Name.Contains(request.SearchString) ||
+                    c.Phone.Contains(request.SearchString) ||
+                    c.Email.Contains(request.SearchString) ||
+                    c.BussinesName.Contains(request.SearchString) ||
+                    c.Address.Contains(request.SearchString) ||
+                    c.RFC.Contains(request.SearchString));
             }
 
             var customerList = await queryable
