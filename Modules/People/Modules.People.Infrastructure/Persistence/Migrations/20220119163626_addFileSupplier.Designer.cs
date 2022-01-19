@@ -4,14 +4,16 @@ using FluentPOS.Modules.People.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FluentPOS.Modules.People.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(PeopleDbContext))]
-    partial class PeopleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220119163626_addFileSupplier")]
+    partial class addFileSupplier
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

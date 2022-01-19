@@ -19,5 +19,7 @@ namespace FluentPOS.Modules.People.Core.Features.Suppliers.Commands
         public string RFC { get; set; }
 
         public string Company { get; set; }
+
+        public string FileName { get; set; }
     }
 }

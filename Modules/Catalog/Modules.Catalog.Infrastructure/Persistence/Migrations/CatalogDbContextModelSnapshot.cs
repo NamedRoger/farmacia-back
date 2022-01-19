@@ -282,6 +282,12 @@ namespace FluentPOS.Modules.Catalog.Infrastructure.Persistence.Migrations
                     b.Property<bool>("ActivePrice")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Conversion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Cost")
+                        .HasColumnType("decimal(23,2)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(23,2)");
 
@@ -290,6 +296,9 @@ namespace FluentPOS.Modules.Catalog.Infrastructure.Persistence.Migrations
 
                     b.Property<Guid>("SupplierId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("TypeConversion")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

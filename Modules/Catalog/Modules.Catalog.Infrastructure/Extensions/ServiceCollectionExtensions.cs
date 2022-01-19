@@ -16,6 +16,7 @@ using FluentPOS.Shared.Infrastructure.Extensions;
 using FluentPOS.Shared.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using FluentPOS.Shared.Core.IntegrationServices.People;
 
 namespace FluentPOS.Modules.Catalog.Infrastructure.Extensions
 {

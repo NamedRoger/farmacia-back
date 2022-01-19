@@ -22,7 +22,8 @@ using Microsoft.Extensions.Localization;
 namespace FluentPOS.Modules.People.Core.Features.Suppliers.Queries
 {
     internal class SupplierQueryHandler :
-        IRequestHandler<GetSuppliersQuery, PaginatedResult<GetSuppliersResponse>>
+        IRequestHandler<GetSuppliersQuery, PaginatedResult<GetSuppliersResponse>>,
+        IRequestHandler<GetSupplierByIdQuery, Result<GetSuppliersResponse>>
     {
         private readonly IPeopleDbContext _context;
         private readonly IMapper _mapper;
@@ -37,7 +38,7 @@ namespace FluentPOS.Modules.People.Core.Features.Suppliers.Queries
 
         public async Task<PaginatedResult<GetSuppliersResponse>> Handle(GetSuppliersQuery request, CancellationToken cancellationToken)
         {
-            Expression<Func<Supplier, GetSuppliersResponse>> expression = e => new GetSuppliersResponse(e.Id, e.Name, e.Phone, e.Email, e.Company, e.RFC);
+            Expression<Func<Supplier, GetSuppliersResponse>> expression = e => new GetSuppliersResponse(e.Id, e.Name, e.Phone, e.Email, e.Company, e.RFC, e.FileName);
 
             var queryable = _context.Suppliers.AsNoTracking().OrderBy(x => x.Id).AsQueryable();
 
@@ -63,6 +64,21 @@ namespace FluentPOS.Modules.People.Core.Features.Suppliers.Queries
             }
 
             return _mapper.Map<PaginatedResult<GetSuppliersResponse>>(supplierList);
+        }
+
+        public async Task<Result<GetSuppliersResponse>> Handle(GetSupplierByIdQuery request, CancellationToken cancellationToken)
+        {
+            var supplier = await _context.Suppliers.AsNoTracking()
+                .Where(s => s.Id == request.SupplierId)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (supplier == null)
+            {
+                throw new PeopleException(_localizer["Supplier not found"], HttpStatusCode.NotFound);
+            }
+
+            var productMapper = _mapper.Map<GetSuppliersResponse>(supplier);
+            return await Result<GetSuppliersResponse>.SuccessAsync(productMapper);
         }
     }
 }

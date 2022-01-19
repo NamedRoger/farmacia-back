@@ -16,6 +16,8 @@ namespace FluentPOS.Modules.People.Core.Entities
 
         public string RFC { get; set; }
 
+        public string FileName { get; set; }
+
         public virtual ICollection<SupplierExtendenAttribute> ExtendedAttributes { get; set; }
 
         public Supplier()

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using FluentPOS.Modules.People.Core.Entities;
 using FluentPOS.Modules.People.Core.Features.Suppliers.Commands;
 using FluentPOS.Modules.People.Core.Features.Suppliers.Queries;
@@ -14,6 +15,7 @@ namespace FluentPOS.Modules.People.Core.Mappings
             CreateMap<RegisteredSupplierCommand, Supplier>().ReverseMap();
             CreateMap<UpdateSupplierCommand, Supplier>().ReverseMap();
             CreateMap<GetSuppliersResponse, Supplier>().ReverseMap();
+            CreateMap<List<GetSuppliersResponse>, Supplier>().ReverseMap();
             CreateMap<PaginatedSupplierFilter, GetSuppliersQuery>()
                 .ForMember(des => des.OrderBy, opt => opt.ConvertUsing<string>(new OrderByConverter()));
         }

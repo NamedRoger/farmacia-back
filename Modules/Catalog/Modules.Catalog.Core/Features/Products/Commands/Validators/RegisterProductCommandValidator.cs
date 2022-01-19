@@ -25,10 +25,11 @@ namespace FluentPOS.Modules.Catalog.Core.Features.Products.Commands.Validators
                 .NotEmpty().WithMessage(localizer["The {PropertyName} property cannot be empty."]);
             RuleFor(c => c.CategoryId)
                 .NotEmpty().WithMessage(localizer["The {PropertyName} property cannot be empty."]);
-            RuleFor(c => c.Price)
-                .NotEmpty().WithMessage(localizer["The {PropertyName} property cannot be empty."]);
-            RuleFor(c => c.Cost)
-                .NotEmpty().WithMessage(localizer["The {PropertyName} property cannot be empty."]);
+
+            // RuleFor(c => c.Price)
+            //    .NotEmpty().WithMessage(localizer["The {PropertyName} property cannot be empty."]);
+            // RuleFor(c => c.Cost)
+            //    .NotEmpty().WithMessage(localizer["The {PropertyName} property cannot be empty."]);
             RuleFor(c => c.BarcodeSymbology)
                 .NotEmpty().WithMessage(localizer["The {PropertyName} property cannot be empty."])
                 .Length(5, 150).WithMessage(localizer["The {PropertyName} property must have between 5 and 150 characters."]);
