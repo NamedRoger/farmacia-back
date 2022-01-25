@@ -73,6 +73,10 @@ namespace FluentPOS.Modules.Sales.Core.Features.Sales.Commands
                 }
             }
 
+            order.CalculateSubTotal();
+            order.CalculateTaxes();
+            order.CalculateTotal();
+
             await _salesContext.Orders.AddAsync(order, cancellationToken);
             await _salesContext.SaveChangesAsync(cancellationToken);
             await _cartService.RemoveCartAsync(command.CartId);

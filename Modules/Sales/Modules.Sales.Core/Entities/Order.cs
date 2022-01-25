@@ -80,14 +80,26 @@ namespace FluentPOS.Modules.Sales.Core.Entities
         {
             foreach (var product in Products)
             {
-                SubTotal += product.Total;
+                SubTotal += product.Price;
+            }
+        }
+
+        public void CalculateTaxes()
+        {
+            foreach (var product in Products)
+            {
+                Tax += product.Tax;
             }
         }
 
         public void CalculateTotal()
         {
-            CalculateSubTotal();
-            Total = SubTotal - Discount;
+            decimal totalOrder = 0;
+            foreach (var product in Products)
+            {
+                totalOrder += product.Total;
+            }
+            Total = totalOrder - Discount;
         }
     }
 }
