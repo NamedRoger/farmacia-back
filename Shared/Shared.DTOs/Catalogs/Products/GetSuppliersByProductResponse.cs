@@ -14,6 +14,10 @@ namespace FluentPOS.Shared.DTOs.Catalogs.Products
 
         public string SupplierName { get; set; }
 
+        public int TypedConversion { get; set; }
+
+        public string Conversion { get; set; }
+
         public decimal Cost { get; set; }
 
         public decimal Price { get; set; }
