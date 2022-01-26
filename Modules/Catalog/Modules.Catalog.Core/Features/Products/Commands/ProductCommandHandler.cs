@@ -29,7 +29,8 @@ namespace FluentPOS.Modules.Catalog.Core.Features.Products.Commands
     internal class ProductCommandHandler :
         IRequestHandler<RegisterProductCommand, Result<Guid>>,
         IRequestHandler<RemoveProductCommand, Result<Guid>>,
-        IRequestHandler<UpdateProductCommand, Result<Guid>>
+        IRequestHandler<UpdateProductCommand, Result<Guid>>,
+        IRequestHandler<RegisterSupplierProductCommand, Result<Guid>>
     {
         private readonly IDistributedCache _cache;
         private readonly ICatalogDbContext _context;
@@ -124,6 +125,25 @@ namespace FluentPOS.Modules.Catalog.Core.Features.Products.Commands
             {
                 throw new CatalogException(_localizer["Product Not Found!"], HttpStatusCode.NotFound);
             }
+        }
+
+        public async Task<Result<Guid>> Handle(RegisterSupplierProductCommand command, CancellationToken cancellationToken)
+        {
+            var product = await _context.Products.Where(p => p.Id == command.ProductId)
+                    .FirstOrDefaultAsync(cancellationToken);
+            if (product != null)
+            {
+                var supplier = _mapper.Map<Supplier>(command);
+                supplier.CalculatePrice();
+                await _context.Suppliers.AddAsync(supplier);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new CatalogException(_localizer["Product Not Found!"], HttpStatusCode.NotFound);
+            }
+
+            return await Result<Guid>.SuccessAsync(product.Id, _localizer["Add Supplier to Product"]);
         }
     }
 }

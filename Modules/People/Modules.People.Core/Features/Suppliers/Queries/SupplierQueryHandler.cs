@@ -23,7 +23,8 @@ namespace FluentPOS.Modules.People.Core.Features.Suppliers.Queries
 {
     internal class SupplierQueryHandler :
         IRequestHandler<GetSuppliersQuery, PaginatedResult<GetSuppliersResponse>>,
-        IRequestHandler<GetSupplierByIdQuery, Result<GetSuppliersResponse>>
+        IRequestHandler<GetSupplierByIdQuery, Result<GetSuppliersResponse>>,
+        IRequestHandler<GetSuppliersByProductIdQuery, Result<List<GetSuppliersResponse>>>
     {
         private readonly IPeopleDbContext _context;
         private readonly IMapper _mapper;
@@ -79,6 +80,11 @@ namespace FluentPOS.Modules.People.Core.Features.Suppliers.Queries
 
             var productMapper = _mapper.Map<GetSuppliersResponse>(supplier);
             return await Result<GetSuppliersResponse>.SuccessAsync(productMapper);
+        }
+
+        public Task<Result<List<GetSuppliersResponse>>> Handle(GetSuppliersByProductIdQuery request, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }

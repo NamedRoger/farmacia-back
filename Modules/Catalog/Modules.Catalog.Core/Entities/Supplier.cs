@@ -18,6 +18,8 @@ namespace FluentPOS.Modules.Catalog.Core.Entities
 
         public decimal Cost { get; set; }
 
+        public string FileName { get; set; }
+
         public string Conversion { get; set; }
 
         public TypeConversionPriceProduct TypeConversion { get; set; } = TypeConversionPriceProduct.Percentage;

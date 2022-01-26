@@ -25,6 +25,7 @@ namespace FluentPOS.Modules.Catalog.Core.Mappings
             CreateMap<UpdateProductCommand, Product>().ReverseMap();
             CreateMap<GetByIdCacheableFilter<Guid, Product>, GetProductByIdQuery>();
             CreateMap<GetProductByIdResponse, Product>().ReverseMap();
+            CreateMap<RegisterSupplierProductCommand, Supplier>().ReverseMap();
             CreateMap<Product, GetProductsResponse>()
                 .ForMember(d => d.BrandName, o => o.MapFrom(s => s.Brand.Name))
                 .ForMember(d => d.CategoryName, o => o.MapFrom(s => s.Category.Name));

@@ -136,14 +136,18 @@ namespace FluentPOS.Modules.Catalog.Core.Features.Products.Queries
             List<GetSuppliersByProductResponse> suppliersMaped = new List<GetSuppliersByProductResponse>();
             foreach (var s in suppliers)
             {
-                var supplier = await _supplierService.GetSupplierById(s.Id);
-                suppliersMaped.Add(new GetSuppliersByProductResponse {
+                var supplier = await _supplierService.GetSupplierById(s.SupplierId);
+                suppliersMaped.Add(new GetSuppliersByProductResponse
+                {
                     Cost = s.Cost,
                     IsPriceActive = s.ActivePrice,
                     Price = s.Price,
                     ProductId = request.ProductId,
                     SupplierId = s.Id,
-                    SupplierName = supplier.Data.Name
+                    SupplierName = supplier.Data.Name,
+                    Conversion = s.Conversion,
+                    TypedConversion = (int)s.TypeConversion,
+                    FileName = s.FileName
                 });
             }
 

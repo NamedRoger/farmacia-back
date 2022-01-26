@@ -53,6 +53,7 @@ namespace FluentPOS.Modules.Catalog.Core.Entities
             : base()
         {
             ExtendedAttributes = new HashSet<ProductExtendedAttribute>();
+            Suppliers = new List<Supplier>();
         }
 
         public void AddSupplier(Supplier supplier)

@@ -23,5 +23,7 @@ namespace FluentPOS.Shared.DTOs.Catalogs.Products
         public decimal Price { get; set; }
 
         public bool IsPriceActive { get; set; }
+
+        public string FileName { get; set; }
     }
 }
